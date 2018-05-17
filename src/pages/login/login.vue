@@ -8,7 +8,7 @@
 
 
 <script>
-export {default} from './loginCtr'
+	export {default} from './loginCtr'
 </script>
 
 
