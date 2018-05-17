@@ -128,6 +128,7 @@
 		float: right;
 		width: calc(100% - 170px);
 		height: calc(100% - 20px);
+		padding: 10px;
 		background-color: #eaeef2;
 		padding: 10px;
 	}
