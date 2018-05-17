@@ -35,5 +35,6 @@ a{
 }
 input{
   outline: none;
+  border: none;
 }
 </style>
