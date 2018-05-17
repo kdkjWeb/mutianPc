@@ -126,8 +126,9 @@
 	/*======右边主题=======*/
 	.main{
 		float: right;
-		width: calc(100% - 150px);
-		height: 100%;
+		width: calc(100% - 170px);
+		height: calc(100% - 20px);
 		background-color: #eaeef2;
+		padding: 10px;
 	}
 </style>
