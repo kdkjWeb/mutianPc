@@ -25,11 +25,11 @@ export default{
                 console.log(res)
 
                 //登录成功之后跳转到首页
-                /*setTimeout(()=>{
+                setTimeout(()=>{
                     this.$router.push({
                         name: 'index'
                     })
-                },1500)*/
+                },1500)
             })
         }
     }
