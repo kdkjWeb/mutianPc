@@ -7,8 +7,12 @@ const index = () => import('@/pages/index/index'), //首页
 	  basicparameters = () => import('@/pages/systemsetting/basicparameters/basicparameters'),   //系统设置的基本参数设置
 	  userlevel = () =>import('@/pages/systemsetting/userlevel/userlevel'),    //用户等级
 		achievement = () =>import('@/pages/achievement/achievement'),  //会员业绩表
-		goodscomment =()=> import('@/pages/comment/comment')   // 商品评论
-		
+		goodscomment =()=> import('@/pages/comment/comment'),   // 商品评论
+	  mallinformation = () => import('@/pages/mallinformation/mallinformation'),   //商城咨询
+	  consultation = () => import('@/pages/mallinformation/consultation/consultation'),  //咨询分类
+	  sendnews = () => import('@/pages/mallinformation/sendnews/sendnews')    //发布新闻   
+
+
 export default{
     routes: [
         {
@@ -47,6 +51,22 @@ export default{
 							path: '/userlevel',
 							name: 'userlevel',
 							component: userlevel
+						}
+					]
+				},{
+					path: '/mallinformation',
+					name: 'mallinformation',
+					component: mallinformation,
+					redirect: '/consultation',
+					children: [
+						{
+							path: '/consultation',
+							name: 'consultation',
+							component: consultation
+						},{
+							path: '/sendnews',
+							name: 'sendnews',
+							component: sendnews
 						}
 					]
 				}
