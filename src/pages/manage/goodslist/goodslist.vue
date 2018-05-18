@@ -1,6 +1,6 @@
 <template>
-	<div class="achievement">
-		<!--会员业绩表-->
+	<div class="goodslist">
+		<!--商品管理-->
 
 		<div class="header">
 			<input type="text" name="" id="" value="" placeholder="可按电话号码，昵称 查找" />
@@ -9,6 +9,13 @@
 				<i class="el-icon-search"></i>
 				<span>查询</span>
 			</div>
+
+			<input type="button" value="推荐商品" class="changeNum" />
+			<input type="button" value="秒杀商品" />
+			<input type="button" value="下架商品" />
+			<input type="button" value="修改" />
+			<input type="button" value="删除" />
+
 		</div>
 
 	
@@ -18,22 +25,24 @@
 			<div class="Table">
 				
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
+					<el-table-column type="selection" width="60"></el-table-column>
 	
-					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="200"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="goodsName" label="商品名称" width="125" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="classification" label="分类" width="120" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="goodsNum" label="库存数量" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="upOrdown" label="上/下架" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="price" label="单价" width="90" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="company" label="单位" width="50" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="recommend" label="是否推荐" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="rStarTime" label="推荐开始时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="rEndTime" label="推荐结束时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="kill" label="是否秒杀" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="kStarTime" label="秒杀开始时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="kEndTime" label="秒杀结束时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="img" label="有无图片" width="80" ></el-table-column>
 	
-					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="200"></el-table-column>
-	
-					<el-table-column label-class-name="mytableTit" prop="buySome" label="购买者" width="200"></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="money" label="销售金额" width="200"></el-table-column>
-					
-					<el-table-column label-class-name="mytableTit" prop="time" label="销售时间" width="300"></el-table-column>
-					
-					<el-table-column label-class-name="mytableTit" prop="product" label="购买产品" width="200"></el-table-column>
 	
-					
-	
-				
 				</el-table>
 	
 				<div class="foot">
@@ -55,11 +64,14 @@
 </template>
 
 <script>
-	export {default} from './achievementCtr'
+	export {
+		default
+	}
+	from './goodslistCtr'
 </script>
 
 <style scoped>
-	.achievement {
+	.goodslist {
 		width: 100%;
 		height: 100%;
 	}
@@ -131,10 +143,7 @@
 	.el-table--fit {
 		height: calc(100% - 70px);
 	}
-	.cell{
-		color: #4768f3 !important;
-		font-size: 18px;
-	}
+	
 	/*===表格头部样式*/
 	.mytableTit{
 		color: #4768f3;

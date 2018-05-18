@@ -10,27 +10,27 @@
 			<!--左边导航-->
 			<nav>
 				<ul>
-					<li>
+					<li @click="linkTo(0)">
 						<div class="fImg"></div>
 						<span>用户管理</span>
 					</li>
-					<li>
+					<li @click="linkTo(1)">
 						<div class="fImg"></div>
 						<span>会员业绩表</span>
 					</li>
-					<li>
+					<li @click="linkTo(2)">
 						<div class="fImg"></div>
 						<span>商品管理</span>
 					</li>
-					<li>
+					<li @click="linkTo(3)">
 						<div class="fImg"></div>
 						<span>商品评论</span>
 					</li>
-					<li>
+					<li @click="linkTo(4)">
 						<div class="fImg"></div>
-						<span>商城资讯</span>
+						<span>商城咨询</span>
 					</li>
-					<li>
+					<li @click="linkTo(5)">
 						<div class="fImg"></div>
 						<span>系统设置</span>
 					</li>

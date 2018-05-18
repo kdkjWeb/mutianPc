@@ -27,29 +27,29 @@
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="55"></el-table-column>
 	
-					<el-table-column prop="Phone" label="手机号码" width="120"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="Phone" label="手机号码" width="120" ></el-table-column>
 	
-					<el-table-column prop="name" label="真实姓名" width="80"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="80"></el-table-column>
 	
-					<el-table-column prop="nickname" label="昵称" width="100"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="100"></el-table-column>
 	
-					<el-table-column prop="upId" label="上级会员ID" width="100"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="upId" label="上级会员ID" width="100"></el-table-column>
 	
-					<el-table-column prop="upName" label="上级会员姓名" width="110"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="upName" label="上级会员姓名" width="110"></el-table-column>
 	
-					<el-table-column prop="level" label="所属层级" width="80"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="level" label="所属层级" width="80"></el-table-column>
 	
-					<el-table-column prop="grade" label="用户等级" width="80"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="grade" label="用户等级" width="80"></el-table-column>
 	
-					<el-table-column prop="card" label="银行卡号" width="150"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="card" label="银行卡号" width="150"></el-table-column>
 	
-					<el-table-column prop="bank" label="开户银行" width="80"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="bank" label="开户银行" width="80"></el-table-column>
 	
-					<el-table-column prop="vip" label="是否会员" width="80"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="vip" label="是否会员" width="80"></el-table-column>
 	
-					<el-table-column prop="money" label="累计消费金额" width="110"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="money" label="累计消费金额" width="110"></el-table-column>
 	
-					<el-table-column prop="address" label="地址" show-overflow-tooltip></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="address" label="地址" show-overflow-tooltip></el-table-column>
 	
 				</el-table>
 	
@@ -151,9 +151,10 @@
 	.el-table--fit {
 		height: calc(100% - 70px);
 	}
-	.cell{
-		color: #4768f3 !important;
-		font-size: 18px;
+	
+	/*===表格头部样式*/
+	.mytableTit{
+		color: #4768f3;
 	}
 	/*=====底部======*/
 	.foot{
