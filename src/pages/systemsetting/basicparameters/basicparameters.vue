@@ -1,13 +1,17 @@
 <template>
-      <!-- 基本参数设置 -->
-    <div class="basicparameters">
-        <nav class="nav">
-            <div class="topBar">
-                <div>基本参数设置</div>
-                <div>用户等级设置</div>
-            </div>
-        </nav>
-    </div>
+    <!-- 基本参数设置 -->
+     <div class="basicparameters">
+         <div class="container">
+             <div class="flex">
+                 升级会员需购买<input type="number">元
+             </div>
+             <div class="flex">
+                 <span class="iconfont icon-gou"></span>
+                 用户满足消费额度后自动升级为会员
+             </div>
+         </div>
+         <div class="save">保存</div>
+     </div>
 </template>
 
 
@@ -16,31 +20,44 @@ export {default} from './basicparametersCtr'
 </script>
 
 <style scoped>
-.nav{
-    width: 100%;
-    height: 80px;
-    background-color:#fff;
-    padding-top: 1px; 
+.basicparameters{
+    background-color: #fff;
+    height: 100%;
 }
-.topBar{
+.container{
     display: flex;
     display: -webkit-flex;
-    width: 500px;
-    height: 35px;
-    margin: 22px auto;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    color: #0366e8;
-    overflow: hidden;
+    width: 100%;
+    padding: 20px 0 0;
 }
-.topBar div{
+.container div.flex{
     flex: 1;
     text-align: center;
-    line-height: 35px;
 }
-.active{
-    background-color: #0366e8;
+.container div input{
+    width: 90px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin: 0 10px;
+    padding-left: 10px;
+}
+.container div span.iconfont{
+    vertical-align: middle;
+    font-size: 30px;
+    color: #ff7303;
+}
+.save{
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: #ff5959;
     color: #fff;
+    margin: 50px auto;
 }
 </style>
 

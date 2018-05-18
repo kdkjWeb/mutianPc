@@ -3,8 +3,9 @@
 const index = () => import('@/pages/index/index'), //首页
 	  login = () => import('@/pages/login/login'),  //登录
 	  management = () => import('@/pages/management/management'),  //用户管理
-	  basicparameters = () => import('@/pages/systemsetting/basicparameters/basicparameters')   //系统设置的基本参数设置
-
+	  systemsetting = () =>import('@/pages/systemsetting/systemsetting'),   //系统设置
+	  basicparameters = () => import('@/pages/systemsetting/basicparameters/basicparameters'),   //系统设置的基本参数设置
+	  userlevel = () =>import('@/pages/systemsetting/userlevel/userlevel')    //用户等级
 
 export default{
     routes: [
@@ -24,9 +25,21 @@ export default{
 				  	name: 'management',
 				    component: management
 				},{
-					path: '/basicparameters',
-					name: 'basicparameters',
-					component: basicparameters
+					path: '/systemsetting',
+					name: 'systemsetting',
+					component: systemsetting,
+					redirect: '/basicparameters',
+					children: [
+						{
+							path: '/basicparameters',
+							name: 'basicparameters',
+							component: basicparameters
+						},{
+							path: '/userlevel',
+							name: 'userlevel',
+							component: userlevel
+						}
+					]
 				}
         	]
         }
