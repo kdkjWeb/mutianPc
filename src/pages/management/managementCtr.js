@@ -177,11 +177,21 @@
     created(){
     	let s = document.body.clientHeight;
     	this.h = s - 300;
-    	console.log(this.h)
     },
     mounted(){
-    	
-    }
+    	let _this = this
+        window.onresize = () => {
+            return (() => {
+                window.screenHeight = document.body.clientHeight
+                _this.h = window.screenHeight - 300;
+            })()
+        }
+    },
+    watch:{
+        screenHeight (val) {
+              this.h = val
+          }
+      }
     
     
   }

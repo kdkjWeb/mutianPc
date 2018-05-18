@@ -1,6 +1,6 @@
 <template>
-	<div class="management">
-		<!--用户管理-->
+	<div class="comment">
+		<!--商品评论-->
 
 		<div class="header">
 			<input type="text" name="" id="" value="" placeholder="可按电话号码，昵称 查找" />
@@ -10,10 +10,10 @@
 				<span>查询</span>
 			</div>
 
-			<input type="button" value="修改用户等级" class="changeNum" />
-			<input type="button" value="修改密码" />
-			<input type="button" value="封号" />
-			<input type="button" value="解封" />
+			<input type="button" value="新评论" />
+			<input type="button" value="历史评论" />
+			
+			<input type="button" value="通过审核" class="pass"/>
 			<input type="button" value="删除" />
 
 		</div>
@@ -25,31 +25,12 @@
 			<div class="Table">
 				
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
-					<el-table-column type="selection" width="55"></el-table-column>
-	
-					<el-table-column prop="Phone" label="手机号码" width="120"></el-table-column>
-	
-					<el-table-column prop="name" label="真实姓名" width="80"></el-table-column>
-	
-					<el-table-column prop="nickname" label="昵称" width="100"></el-table-column>
-	
-					<el-table-column prop="upId" label="上级会员ID" width="100"></el-table-column>
-	
-					<el-table-column prop="upName" label="上级会员姓名" width="110"></el-table-column>
-	
-					<el-table-column prop="level" label="所属层级" width="80"></el-table-column>
-	
-					<el-table-column prop="grade" label="用户等级" width="80"></el-table-column>
-	
-					<el-table-column prop="card" label="银行卡号" width="150"></el-table-column>
-	
-					<el-table-column prop="bank" label="开户银行" width="80"></el-table-column>
-	
-					<el-table-column prop="vip" label="是否会员" width="80"></el-table-column>
-	
-					<el-table-column prop="money" label="累计消费金额" width="110"></el-table-column>
-	
-					<el-table-column prop="address" label="地址" show-overflow-tooltip></el-table-column>
+					<el-table-column type="selection" width="80"></el-table-column>
+					<el-table-column prop="usercomment" label="评论" width="505"></el-table-column>
+					<el-table-column prop="goods" label="相关商品" width="250"></el-table-column>
+					<el-table-column prop="time" label="评论时间" width="250"></el-table-column>
+					<el-table-column prop="people" label="评论人" width="150"></el-table-column>
+					<el-table-column prop="state" label="审核状态" width="170"></el-table-column>
 	
 				</el-table>
 	
@@ -75,11 +56,11 @@
 	export {
 		default
 	}
-	from './managementCtr'
+	from './commentCtr'
 </script>
 
 <style scoped>
-	.management {
+	.comment {
 		width: 100%;
 		height: 100%;
 	}
@@ -125,13 +106,14 @@
 		outline: none;
 		text-align: center;
 		color: #FFFFFF;
-		padding: 0 20px;
+		/*padding: 0 20px;*/
 		cursor: pointer;
 		margin-left: 30px;
+		width: 100px;
 	}
 	
-	.changeNum {
-		margin-left: 10%!important;
+	.pass {
+		margin-left: 30%!important;
 	}
 	/*============表格样式覆盖===========*/
 	
