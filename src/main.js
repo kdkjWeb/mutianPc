@@ -7,9 +7,17 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI)
-// import { Message, Loading } from 'element-ui';
-// Vue.prototype.$loading = Loading
-// Vue.prototype.$message = Message
+
+
+//使用富文本插件
+import  VueQuillEditor from 'vue-quill-editor'
+// require styles 引入样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor)
+
 
 //引入iconfont字体图标
 import '@/assets/font/iconfont.css'
