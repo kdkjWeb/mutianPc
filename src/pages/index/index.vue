@@ -10,27 +10,27 @@
 			<!--左边导航-->
 			<nav>
 				<ul>
-					<li @click="linkTo(0)">
+					<li @click="linkTo(0)" :class="{liActive : activeIndex == 0}">
 						<div class="fImg"></div>
 						<span>用户管理</span>
 					</li>
-					<li @click="linkTo(1)">
+					<li @click="linkTo(1)" :class="{liActive : activeIndex == 1}">
 						<div class="fImg"></div>
 						<span>会员业绩表</span>
 					</li>
-					<li @click="linkTo(2)">
+					<li @click="linkTo(2)" :class="{liActive : activeIndex == 2}">
 						<div class="fImg"></div>
 						<span>商品管理</span>
 					</li>
-					<li @click="linkTo(3)">
+					<li @click="linkTo(3)" :class="{liActive : activeIndex == 3}">
 						<div class="fImg"></div>
 						<span>商品评论</span>
 					</li>
-					<li @click="linkTo(4)">
+					<li @click="linkTo(4)" :class="{liActive : activeIndex == 4}">
 						<div class="fImg"></div>
 						<span>商城咨询</span>
 					</li>
-					<li @click="linkTo(5)">
+					<li @click="linkTo(5)" :class="{liActive : activeIndex == 5}">
 						<div class="fImg"></div>
 						<span>系统设置</span>
 					</li>
@@ -119,7 +119,7 @@
 		margin-top: 15px;
 	}
 	
-	nav li:hover {
+	nav li:hover,.liActive {
 		background-color: #1275ca;
 	}
 	

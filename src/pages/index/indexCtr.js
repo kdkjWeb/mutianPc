@@ -32,7 +32,8 @@ export default {
                     name: 'systemsetting'
                 })
             }
-        }
+        } 
     }
+//  created:fun
 	
 }

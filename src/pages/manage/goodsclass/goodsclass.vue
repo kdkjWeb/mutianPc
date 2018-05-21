@@ -17,11 +17,11 @@
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="95"></el-table-column>
 	
-					<el-table-column prop="ordinal" label="分类序号" width="220" label-class-name="mytableTit"></el-table-column>
+					<el-table-column prop="ordinal" label="分类序号"  label-class-name="mytableTit"></el-table-column>
 					
-					<el-table-column prop="name" label="分类名称" width="400" label-class-name="mytableTit"></el-table-column>
+					<el-table-column prop="name" label="分类名称" label-class-name="mytableTit"></el-table-column>
 					
-					<el-table-column prop="" label="" width="260"></el-table-column>
+					<!--<el-table-column prop="" label="" width="260"></el-table-column>-->
 	
 				</el-table>
 				

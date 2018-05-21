@@ -21,7 +21,7 @@
 	
 					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="200"></el-table-column>
 	
-					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="200"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="230"></el-table-column>
 	
 					<el-table-column label-class-name="mytableTit" prop="buySome" label="购买者" width="200"></el-table-column>
 					
@@ -29,7 +29,7 @@
 					
 					<el-table-column label-class-name="mytableTit" prop="time" label="销售时间" width="300"></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="product" label="购买产品" width="200"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="product" label="购买产品" width="250"></el-table-column>
 	
 					
 	
