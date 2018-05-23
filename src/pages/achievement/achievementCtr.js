@@ -4,36 +4,7 @@
       	input:'',//搜索框 的值
       	currentPage3: 5,   //分页的页数
       	h:350,
-        tableData3: [{
-			name:'张天师',
-        	nickname:'昵称昵称',
-        	buySome:'张打仗',
-        	money:500,
-        	time:'5000',
-        	product:'三级'
-			},{
-			name:'张天师',
-        	nickname:'昵称昵称',
-        	buySome:'张打仗',
-        	money:500,
-        	time:'5000',
-        	product:'三级'
-			},{
-			name:'张天师',
-        	nickname:'昵称昵称',
-        	buySome:'张打仗',
-        	money:500,
-        	time:'5000',
-        	product:'三级'
-			},{
-			name:'张天师',
-        	nickname:'昵称昵称',
-        	buySome:'张打仗',
-        	money:500,
-        	time:'5000',
-        	product:'三级'
-			}],
-        ultipleSelection: []
+        tableData3: [],   //列表数据
       }
     },
 

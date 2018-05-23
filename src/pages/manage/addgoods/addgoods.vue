@@ -8,7 +8,7 @@
 						<span class="span_left"><i>*</i>分类名称:</span>
 						<!--====下拉种类选择========-->
 						<el-select v-model="value" placeholder="请选择">
-							<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+							<el-option v-for="item in options" :key="item.typeId" :label="item.typeName" :value="item.typeName">
 							</el-option>
 						</el-select>
 					</div>
@@ -17,13 +17,36 @@
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>商品名称:</span>
+						<input type="text" class="infor" v-model="goods.goodsName"/>
+					</div>
+				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+					<div class="grid-content bg-purple">
+						<span class="span_left"><i>*</i>市场价:</span>
+						<input type="text" class="infor" />
+					</div>
+				</el-col>
+			</el-row>
+			
+			<el-row :gutter="20">
+				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+					<div class="grid-content bg-purple">
+						<span class="span_left"><i>*</i>零售价:</span>
 						<input type="text" class="infor" />
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>单价:</span>
+						<span class="span_left"><i>*</i>会员价:</span>
+						<input type="text" class="infor" v-model="goods.goodsName"/>
+					</div>
+				</el-col>
+
+				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+					<div class="grid-content bg-purple">
+						<span class="span_left"><i>*</i>秒杀价:</span>
 						<input type="text" class="infor" />
 					</div>
 				</el-col>
@@ -144,11 +167,21 @@
 </script>
 
 <style>
+	/*===上传图片样式覆盖========*/
+	.el-upload--picture-card{
+		width: 100px !important;
+		height: 100px !important;
+		line-height: 100px !important;
+	}
+</style>
+
+<style scoped>
 	.addgoods {
 		width: calc(100% - 60px);
 		height: calc(100% - 40px);
 		background-color: #FFFFFF;
-		padding: 20px 30px;
+		padding: 10px 30px;
+		overflow-y: auto;
 	}
 	
 	input {
@@ -192,17 +225,6 @@
 		display: inline-block;
 	}
 	
-	/*===上传图片========*/
-	.el-upload--picture-card{
-		width: 100px !important;
-		height: 100px;
-		line-height:110px;
-	}
-	.el-upload-list--picture-card .el-upload-list__item{
-		width: 100px;
-		height: 100px;
-		vertical-align: top;
-	}
 	
 	/*==========*/
 	.doIn{

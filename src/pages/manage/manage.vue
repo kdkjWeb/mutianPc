@@ -73,5 +73,6 @@
 		width: 100%;
 		height: calc(100% - 90px);
 		margin-top: 10px;
+		overflow-y:scroll ;
 	}
 </style>

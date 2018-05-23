@@ -18,8 +18,9 @@
 			<div class="Table">
 				
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
-	
-					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="200"></el-table-column>
+					<el-table-column type="selection" width="55"></el-table-column>
+					
+					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="170"></el-table-column>
 	
 					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="230"></el-table-column>
 	
