@@ -7,8 +7,8 @@
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>分类名称:</span>
 						<!--====下拉种类选择========-->
-						<el-select v-model="value" placeholder="请选择">
-							<el-option v-for="item in options" :key="item.typeId" :label="item.typeName" :value="item.typeName">
+						<el-select v-model="goods.goodsClass" placeholder="请选择">
+							<el-option v-for="item in options" :key="item.typeId" :label="item.typeName" :value="item.typeId">
 							</el-option>
 						</el-select>
 					</div>
@@ -17,14 +17,14 @@
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>商品名称:</span>
-						<input type="text" class="infor" v-model="goods.goodsName"/>
+						<input type="text" class="infor" v-model="goods.goodsName" placeholder="请输入商品名称"/>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>市场价:</span>
-						<input type="text" class="infor" />
+						<input type="text" class="infor" v-model="goods.markePrice"  placeholder="请输入市场价"/>
 					</div>
 				</el-col>
 			</el-row>
@@ -33,21 +33,21 @@
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>零售价:</span>
-						<input type="text" class="infor" />
+						<input type="text" class="infor" v-model="goods.price"  placeholder="请输入零售价"/>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>会员价:</span>
-						<input type="text" class="infor" v-model="goods.goodsName"/>
+						<input type="text" class="infor" v-model="goods.disPrice"  placeholder="请输入会员价"/>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left"><i>*</i>秒杀价:</span>
-						<input type="text" class="infor" />
+						<input type="text" class="infor" v-model="goods.priceSpike"  placeholder="请输入秒杀价"/>
 					</div>
 				</el-col>
 			</el-row>
@@ -56,24 +56,24 @@
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">库存数量:</span>
-						<input type="text" class="infor" />
+						<input type="number" class="infor" v-model="goods.inventory" placeholder="请输入库存数量"/>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">单位:</span>
-						<input type="text" class="infor" />
+						<input type="text" class="infor" v-model="goods.unit" placeholder="请输入单位名称"/>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
-						<p>
+						<p class="upDown">
 							<i class="iconfont" :class="isChoose?'icon-roundcheckfill':'icon-roundcheck'" @click="changeChoose()"></i>
 							<span>上架</span>
 						</p>
-						<p>
+						<p class="upDown">
 							<i class="iconfont" :class="isChoose?'icon-roundcheck':'icon-roundcheckfill'" @click="changeChoose()"></i>
 							<span>下架</span>
 						</p>
@@ -94,14 +94,30 @@
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">推荐开始时间:</span>
-						<input type="text" class="infor" />
+						<span>
+						  	 <el-date-picker
+						  	  value-format="timestamp"
+						      v-model="goods.rebeginTime"
+						      type="datetime"
+						      placeholder="选择日期时间"
+						      default-time="12:00:00">
+						    </el-date-picker>
+						  </span>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">推荐结束时间:</span>
-						<input type="text" class="infor" />
+						<span>
+						  	 <el-date-picker
+						  	  value-format="timestamp"
+						      v-model="goods.reendTime"
+						      type="datetime"
+						      placeholder="选择日期时间"
+						      default-time="12:00:00">
+						    </el-date-picker>
+						  </span>
 					</div>
 				</el-col>
 			</el-row>
@@ -111,22 +127,40 @@
 					<div class="grid-content bg-purple">
 						<p>
 							<i class="iconfont" :class="isKill?'icon-roundcheckfill':'icon-roundcheck'" @click="changeKill()"></i>
-							<span>秒杀</span>
+							<span>秒杀:</span>
+							<input type="number" class="infor" v-model="goods.spikeNum"  placeholder="请输入秒杀数量"/>
 						</p>
 					</div>
 				</el-col>
-
+				
+				
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">秒杀开始时间:</span>
-						<input type="text" class="infor" />
+						<span>
+						  	 <el-date-picker
+						  	  value-format="timestamp"
+						      v-model="goods.startTime"
+						      type="datetime"
+						      placeholder="选择日期时间"
+						      default-time="12:00:00">
+						    </el-date-picker>
+						  </span>
 					</div>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
 					<div class="grid-content bg-purple">
 						<span class="span_left">秒杀结束时间:</span>
-						<input type="text" class="infor" />
+						  <span>
+						  	 <el-date-picker
+						  	  value-format="timestamp"
+						      v-model="goods.endTime"
+						      type="datetime"
+						      placeholder="选择日期时间"
+						      default-time="12:00:00">
+						    </el-date-picker>
+						  </span> 
 					</div>
 				</el-col>
 			</el-row>
@@ -147,11 +181,11 @@
 			
 			<div class="doIn">
 				<span>商品描述：</span>
-				<textarea name="" rows="" cols=""></textarea>
+				<textarea name="" rows="" cols="" v-model="goods.description" ></textarea>
 			</div>
 			
 			<div class="foot">
-				<input type="button" value="新增" class="addIpt"/>
+				<input type="button" value="新增" class="addIpt" @click="addGoods"/>
 				<input type="button" value="保存" class="saveIpt"/>
 			</div>
 			
@@ -172,6 +206,11 @@
 		width: 100px !important;
 		height: 100px !important;
 		line-height: 100px !important;
+	}
+	/*===============?*/
+	.el-input__inner{
+		border-radius: 35px;
+		border: 1px solid #C2C2C2;
 	}
 </style>
 
@@ -203,7 +242,16 @@
 	}
 	.el-col p{
 		display: inline-block;
-		margin-left: 50px;
+		margin-left: 25px;
+		width: 100%;
+	}
+	.upDown{
+		width:20% !important;
+		margin: 0;
+	}
+	.el-col p input{
+		width: 50% !important;
+		margin-left: 20px;
 	}
 	/*===========*/
 	
@@ -238,7 +286,9 @@
 		border-radius: 10px;
 		border: 1px solid #c2c2c2;
 		outline: none;
-		resize:none
+		resize:none;
+		text-indent: 15px;
+		font-size: 16px;
 	}
 	
 	/*foot*/
