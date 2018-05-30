@@ -9,7 +9,7 @@ export default {
 			isChoose: true, //是否上架
 			goods:{
 				goodsName:'', //商品名称
-				markePrice:'',//市场价
+				marketPrice:'',//市场价
 				price:'',//零售价
 				disPrice:'',  //会原价
 				priceSpike:'',//秒杀价
@@ -22,11 +22,42 @@ export default {
 				reendTime:'',//推荐结束时间
 				startTime:'',//秒杀开始时间
 				endTime:'',//秒杀结束时间
-				goodsClass: '', //分类的名称
+				goodsClass: '', //分类
 				inventory:'',// 库存
 				unit:''  //单位
+			},
+			rules: {
+				goodsClass: [
+		           { required: true, message: '请选择分类', trigger: 'change' }
+		        ],
+				goodsName: [
+		           { required: true, message: '请输入商品名称', trigger: 'blur' },
+		           { min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
+		        ],
+				marketPrice: [
+					{ required: true, message: '市场价不能为空', trigger: 'blur'},
+     				{ type: 'number', message: '市场价必须为数字值', trigger: 'blur'}
+				],
+				price: [
+					{ required: true, message: '零售价不能为空', trigger: 'blur'},
+     				{ type: 'number', message: '零售价必须为数字值', trigger: 'blur'}
+				],
+				disPrice: [
+					{ required: true, message: '会员价不能为空', trigger: 'blur'},
+     				{ type: 'number', message: '会员价必须为数字值', trigger: 'blur'}
+				],
+				priceSpike: [
+					{ required: true, message: '秒杀价不能为空', trigger: 'blur'},
+     				{ type: 'number', message: '秒杀价必须为数字值', trigger: 'blur'}
+				],
+				inventory: [
+     				{ type: 'number', message: '库存数量必须为数字值', trigger: 'blur'}
+				],
+				spikeNum: [
+     				{ type: 'number', message: '秒杀数量必须为数字值', trigger: 'blur'}
+				]
 			}
-		}
+		}	
 
 	},
 	methods: {
@@ -51,6 +82,8 @@ export default {
 				default:
 				this.goods.recommend = 'n'
 			}
+			console.log(this.goods)
+			
 		},//切换是否推荐
 		
  //     =======是否秒杀		
@@ -105,7 +138,7 @@ export default {
 						_this.$message({
 							showClose: true,
 							message: res.msg,
-							type: 'err'
+							type: 'error'
 						});
 				}
 			})
@@ -115,46 +148,163 @@ export default {
 		
 //		============新增====
 		addGoods(){
-			console.log(this.goods)
+			var dom = this.$refs.myImg;
+			var files = Array.prototype.slice.call(dom.files);
+			var file = files[0];
+
 			let goods = this.goods;
 			
-			var formData = new FormData();
+			var fData = new FormData();
 			
-			formData.append("type",goods.goodsClass);	
+			fData.append("type",goods.goodsClass);	 ///商品分类
+			fData.append("name",goods.goodsName);	//商品名称
+			fData.append("marketPrice",goods.marketPrice);	  //市场价
+			fData.append("price",goods.price);	  //零售价
+			fData.append("disPrice",goods.disPrice);	 //会员价
+			fData.append("priceSpike",goods.priceSpike);	  //秒杀价
+			fData.append("description",goods.description);	 //商品描述
+			fData.append("status",goods.status);	//上架,下架
+			fData.append("recommend",goods.recommend);	 //是否推荐  n是不推荐，y是推荐
+			fData.append("ifSpike",goods.ifSpike);	 //  是否秒杀 
+			fData.append("spikeNum",goods.spikeNum);	// //秒杀数量
+			fData.append("rebeginTime",goods.rebeginTime);	//推荐开始时间
+			fData.append("reendTime",goods.reendTime);	//推荐结束时间
+			fData.append("startTime",goods.startTime);	//秒杀开始时间
+			fData.append("endTime",goods.endTime);	//秒杀结束时间
+			fData.append("inventory",goods.inventory);	// 库存
+			fData.append("unit",goods.unit);	//单位
+			fData.append('file',file);
 			
-			
-			this.$post('goods/addGoods',{
+			this.$post('goods/addGoods',
+				fData	
+			).then(res => {
+				console.log(res);
+				if(res.code == 0){
+					this.$message({
+						showClose: true,
+						message: res.msg,
+						type: 'success'
+					});
+				}else{
+					this.$message({
+						showClose: true,
+						message:'网络出错',
+						type: 'error'
+					});
+				}
 				
-				
-				
-				
-//				type : goods.goodsClass, ///商品分类
-//				name : goods.goodsName,  //商品名称
-//				markePrice : goods.markePrice, //市场价
-//				price : goods.price,   //零售价
-//				disPrice : goods.disPrice,     //会员价
-//				priceSpike : goods.priceSpike,  //秒杀价
-//				description : goods.description, //商品描述
-//				status : goods.status,   //上架,下架
-//				recommend : goods.recommend,   //是否推荐  n是不推荐，y是推荐
-//				ifSpike : goods.ifSpike,    //  是否秒杀 
-//				spikeNum: goods.spikeNum,  // //秒杀数量
-//				rebeginTime : goods.rebeginTime,  //推荐开始时间
-//				reendTime : goods.reendTime,  //推荐结束时间
-//				startTime : goods.startTime,  //秒杀开始时间
-//				endTime : goods.endTime,  //秒杀结束时间
-//				inventory : goods.inventory,// 库存
-//				unit : goods.unit, //单位
-				
-				
-			}).then(res => {
-				console.log(res)
 			})
+		},
+		
+//		=========更新商品=============
+		saveGoods(){
+			var dom = this.$refs.myImg;
+			var files = Array.prototype.slice.call(dom.files);
+			var file = files[0];
+
+			let goods = this.goods;
 			
+			var fData = new FormData();
+			
+			fData.append("type",goods.goodsClass);	 ///商品分类
+			fData.append("name",goods.goodsName);	//商品名称
+			fData.append("marketPrice",goods.marketPrice);	  //市场价
+			fData.append("price",goods.price);	  //零售价
+			fData.append("disPrice",goods.disPrice);	 //会员价
+			fData.append("priceSpike",goods.priceSpike);	  //秒杀价
+			fData.append("description",goods.description);	 //商品描述
+			fData.append("status",goods.status);	//上架,下架
+			fData.append("recommend",goods.recommend);	 //是否推荐  n是不推荐，y是推荐
+			fData.append("ifSpike",goods.ifSpike);	 //  是否秒杀 
+			fData.append("spikeNum",goods.spikeNum);	// //秒杀数量
+			fData.append("rebeginTime",goods.rebeginTime);	//推荐开始时间
+			fData.append("reendTime",goods.reendTime);	//推荐结束时间
+			fData.append("startTime",goods.startTime);	//秒杀开始时间
+			fData.append("endTime",goods.endTime);	//秒杀结束时间
+			fData.append("inventory",goods.inventory);	// 库存
+			fData.append("unit",goods.unit);	//单位
+			fData.append('file',file);
+			
+			this.$post('goods/addGoods',
+				fData	
+			).then(res => {
+				console.log(res);
+				if(res.code == 0){
+					this.$message({
+						showClose: true,
+						message: res.msg,
+						type: 'success'
+					});
+				}else{
+					this.$message({
+						showClose: true,
+						message:'网络出错',
+						type: 'error'
+					});
+				}
+				
+			})
 		}
+		
 	},
 	created() {
 		this.getClass();
+	},
+	mounted(){
+		let goodsId = this.$route.query.id;
+		let _this = this; 
+		let goods = _this.goods;
+		
+		if(goodsId){
+			console.log('ajax')
+			_this.$get('goods/getGoodsById', { //获取商品分类列表
+				id:goodsId
+			}).then(res => {
+				let data = res.data;
+				goods.goodsName = data.name;  //商品名称
+				goods.marketPrice = data.marketPrice;   //市场价
+				goods.price = data.price;  //零售价
+				goods.disPrice = data.disPrice;   //会员价
+				goods.priceSpike = data.priceSpike;   //秒杀价
+				goods.unit = data.unit;   //单位
+				goods.inventory = data.inventory;   //库存
+				goods.spikeNum = data.spikeNum;   //秒杀数
+				
+				goods.description = data.description;   //描述
+				goods.rebeginTime = data.rebeginTime //推荐开始时间
+				goods.reendTime = data.reendTime //推荐结束时间
+				goods.startTime = data.startTime //秒杀开始时间
+				goods.endTime = data.endTime //秒杀结束时间
+				goods.goodsClass = data.type;
+				
+				if(data.status == 1){   //是否是上架
+					this.isChoose = true;
+					goods.status = data.status;
+				}else{
+					this.isChoose = false;
+					goods.status = data.status;
+				}
+				
+				if(data.recommend == 'y'){  //是否推荐
+					this.isCommend = true;
+					goods.recommend = data.recommend;
+				}else{
+					this.isCommend = false;
+					goods.recommend = data.recommend;
+				}
+				
+				if(data.ifSpike == 'y'){  //是否秒杀
+					this.isKill = true;
+					goods.ifSpike = data.ifSpike;
+				}else{
+					this.isKill = false;
+					goods.ifSpike = data.ifSpike;
+				}	
+				
+			})
+		};
+		
+		
 	}
 
 }

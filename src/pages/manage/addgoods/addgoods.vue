@@ -2,69 +2,64 @@
 	<div class="addgoods">
 		<!--添加商品-->
 		<div class="goodscontent">
+			
+		<el-form  ref="form" :rules="rules" label-width="140px" :model="goods">
 			<el-row :gutter="20">
+				
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>分类名称:</span>
-						<!--====下拉种类选择========-->
-						<el-select v-model="goods.goodsClass" placeholder="请选择">
-							<el-option v-for="item in options" :key="item.typeId" :label="item.typeName" :value="item.typeId">
+					<el-form-item label="分类名称:" class="mylable" prop="goodsClass">
+						<el-select v-model="goods.goodsClass" placeholder="请选择" class="myInput" >
+							<el-option v-for="item in options" :key="item.typeId" 
+								:label="item.typeName" :value="item.typeId">
 							</el-option>
 						</el-select>
-					</div>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>商品名称:</span>
-						<input type="text" class="infor" v-model="goods.goodsName" placeholder="请输入商品名称"/>
-					</div>
+					<el-form-item label="商品名称:" class="mylable" prop="goodsName">
+					   <el-input v-model="goods.goodsName" class="myInput" placeholder="请输入商品名称"></el-input>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>市场价:</span>
-						<input type="text" class="infor" v-model="goods.markePrice"  placeholder="请输入市场价"/>
-					</div>
+					<el-form-item label="市场价:" class="mylable" prop="marketPrice">
+					   <el-input v-model.number="goods.marketPrice" class="myInput" placeholder="请输入市场价"></el-input>
+					</el-form-item>
 				</el-col>
 			</el-row>
 			
 			<el-row :gutter="20">
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>零售价:</span>
-						<input type="text" class="infor" v-model="goods.price"  placeholder="请输入零售价"/>
-					</div>
+					<el-form-item label="零售价:" class="mylable" prop="price">
+					   <el-input v-model.number="goods.price" class="myInput" placeholder="请输入零售价"></el-input>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>会员价:</span>
-						<input type="text" class="infor" v-model="goods.disPrice"  placeholder="请输入会员价"/>
-					</div>
+					<el-form-item label="会员价:" class="mylable" prop="disPrice">
+					   <el-input v-model.number="goods.disPrice" class="myInput" placeholder="请输入会员价"></el-input>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left"><i>*</i>秒杀价:</span>
-						<input type="text" class="infor" v-model="goods.priceSpike"  placeholder="请输入秒杀价"/>
-					</div>
+					<el-form-item label="秒杀价:" class="mylable" prop="priceSpike">
+					   <el-input v-model.number="goods.priceSpike" class="myInput" placeholder="请输入秒杀价"></el-input>
+					</el-form-item>
 				</el-col>
 			</el-row>
 			
 			<el-row :gutter="20">
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">库存数量:</span>
-						<input type="number" class="infor" v-model="goods.inventory" placeholder="请输入库存数量"/>
-					</div>
+					<el-form-item label="库存数量:" class="mylable" prop="inventory">
+					   <el-input v-model.number="goods.inventory" class="myInput" placeholder="请输入库存数量"></el-input>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">单位:</span>
-						<input type="text" class="infor" v-model="goods.unit" placeholder="请输入单位名称"/>
-					</div>
+					<el-form-item label="单位:" class="mylable">
+					   <el-input v-model="goods.unit" class="myInput" placeholder="请输入单位名称"></el-input>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
@@ -92,82 +87,71 @@
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">推荐开始时间:</span>
-						<span>
-						  	 <el-date-picker
-						  	  value-format="timestamp"
+					<el-form-item label="推荐开始时间:" class="mylable">
+					    <el-date-picker
+						  	   value-format="yyyy-MM-dd HH:mm:ss"
 						      v-model="goods.rebeginTime"
 						      type="datetime"
 						      placeholder="选择日期时间"
 						      default-time="12:00:00">
 						    </el-date-picker>
-						  </span>
-					</div>
+					</el-form-item>
 				</el-col>
 
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">推荐结束时间:</span>
-						<span>
-						  	 <el-date-picker
-						  	  value-format="timestamp"
+					<el-form-item label="推荐结束时间:" class="mylable">
+					    <el-date-picker
+						  	   value-format="yyyy-MM-dd HH:mm:ss"
 						      v-model="goods.reendTime"
 						      type="datetime"
 						      placeholder="选择日期时间"
 						      default-time="12:00:00">
 						    </el-date-picker>
-						  </span>
-					</div>
+					</el-form-item>
 				</el-col>
 			</el-row>
 			
 			<el-row :gutter="20">
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<p>
-							<i class="iconfont" :class="isKill?'icon-roundcheckfill':'icon-roundcheck'" @click="changeKill()"></i>
-							<span>秒杀:</span>
-							<input type="number" class="infor" v-model="goods.spikeNum"  placeholder="请输入秒杀数量"/>
-						</p>
-					</div>
+					<span class="kill_span">
+						<i class="iconfont" :class="isKill?'icon-roundcheckfill':'icon-roundcheck'" @click="changeKill()"></i>
+						<span>秒杀:</span>
+					</span>
+					<el-form-item prop="spikeNum">
+						<el-input v-model.number="goods.spikeNum" class="myInput" placeholder="请输入秒杀数量"></el-input>
+					</el-form-item>
 				</el-col>
 				
 				
 				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">秒杀开始时间:</span>
-						<span>
-						  	 <el-date-picker
-						  	  value-format="timestamp"
+					<el-form-item label="秒杀开始时间:" class="mylable">
+					    <el-date-picker
+						  	   value-format="yyyy-MM-dd HH:mm:ss"
 						      v-model="goods.startTime"
 						      type="datetime"
 						      placeholder="选择日期时间"
 						      default-time="12:00:00">
 						    </el-date-picker>
-						  </span>
-					</div>
+					</el-form-item>
 				</el-col>
 
-				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-					<div class="grid-content bg-purple">
-						<span class="span_left">秒杀结束时间:</span>
-						  <span>
-						  	 <el-date-picker
-						  	  value-format="timestamp"
+				<el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">					
+					<el-form-item label="秒杀结束时间:" class="mylable">
+					      <el-date-picker
+						  	  value-format="yyyy-MM-dd HH:mm:ss" 
 						      v-model="goods.endTime"
 						      type="datetime"
 						      placeholder="选择日期时间"
 						      default-time="12:00:00">
 						    </el-date-picker>
-						  </span> 
-					</div>
+					</el-form-item>
 				</el-col>
+				
 			</el-row>
 			
 			<div class="upImg">
 				<span>商品图片上传：</span>
-					<el-upload
+					<!--<el-upload
 					  action="https://jsonplaceholder.typicode.com/posts/"
 					  list-type="picture-card"
 					  :on-preview="handlePictureCardPreview"
@@ -176,20 +160,30 @@
 					</el-upload>
 					<el-dialog :visible.sync="dialogVisible">
 					  <img width="100%" :src="dialogImageUrl" alt="">
-					</el-dialog>
+					</el-dialog>-->
+					
+					<!--<input type="file" ref="myImg"/>-->
+					
+					<div>
+						<input type="file" ref="myImg"/>
+					</div>
 			</div>
 			
 			<div class="doIn">
-				<span>商品描述：</span>
-				<textarea name="" rows="" cols="" v-model="goods.description" ></textarea>
+				<el-form-item label="商品描述:" class="mylable">
+					<el-input type="textarea" v-model="goods.description" class="mytextarea" rows="5"></el-input>
+				</el-form-item>
 			</div>
 			
 			<div class="foot">
 				<input type="button" value="新增" class="addIpt" @click="addGoods"/>
-				<input type="button" value="保存" class="saveIpt"/>
+				<input type="button" value="保存" class="saveIpt" @click="saveGoods"/>
 			</div>
-			
+		</el-form>
+		
 		</div>
+		
+		
 	</div>
 </template>
 
@@ -215,6 +209,15 @@
 </style>
 
 <style scoped>
+	.kill_span{
+		float: left;
+		line-height: 40px;
+		margin-left: 25px;
+	}
+	.myInput{
+		width: 60%;
+		margin-left: 20px;
+	}
 	.addgoods {
 		width: calc(100% - 60px);
 		height: calc(100% - 40px);
@@ -226,7 +229,10 @@
 	input {
 		height: 35px;
 	}
-
+	span{
+		font-size: 14px;
+    color: #606266;
+	}
 	/*=======*/
 	.infor {
 		border: 1px solid #C2C2C2;

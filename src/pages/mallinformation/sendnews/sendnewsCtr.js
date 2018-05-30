@@ -24,36 +24,32 @@ export default {
             form: {
                 region: '',
               },
-            optionList: [
-                {
-                    title: '品牌故事1'
-                },{
-                    title: '品牌故事2'
-                },{
-                    title: '品牌故事3'
-                },{
-                    title: '品牌故事4'
-                },{
-                    title: '品牌故事5'
-                }, {
-                    title: '品牌故事6'
-                },{
-                    title: '品牌故事7'
-                },{
-                    title: '品牌故事8'
-                },{
-                    title: '品牌故事9'
-                },{
-                    title: '品牌故事10'
-                }
-            ]
+            optionList: [],
         }
-    },methods:{
+    },
+    methods:{
         onEditorBlur(){//失去焦点事件
         },
         onEditorFocus(){//获得焦点事件
         },
         onEditorChange(){//内容改变事件
-        }
+        },
+        
+//      =========获取分类==========
+		getClassList(){
+			this.$post('newsType/getNewsTypeList', {}).then(res => {
+				console.log(res)
+				this.optionList = res.data;
+			})
+		},
+		
+		save(){
+			
+		}
+
+        
+    },
+    created(){
+    	this.getClassList();
     }
 }

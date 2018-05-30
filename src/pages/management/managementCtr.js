@@ -167,7 +167,7 @@ export default {
 					this.$message({
 			         	showClose: true,
 			          message: '删除失败',
-			          type: 'err'
+			          type: 'error'
 			      });
 				}
 			})

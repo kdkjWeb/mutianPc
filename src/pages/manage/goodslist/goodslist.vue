@@ -3,18 +3,18 @@
 		<!--商品管理-->
 
 		<div class="header">
-			<input type="text" name="" id="" value="" placeholder="可按电话号码，昵称 查找" />
+			<input type="text" v-model="seachInput" id="" value="" placeholder="可按商品名称查找" />
 
-			<div class="search">
+			<div class="search" @click="search">
 				<i class="el-icon-search"></i>
 				<span>查询</span>
 			</div>
 
-			<input type="button" value="推荐商品" class="changeNum" />
-			<input type="button" value="秒杀商品" />
-			<input type="button" value="下架商品" />
-			<input type="button" value="修改" />
-			<input type="button" value="删除" />
+			<input type="button" value="推荐商品" class="changeNum" @click="recommGoods"/>
+			<input type="button" value="秒杀商品" @click="KillGoods"/>
+			<input type="button" value="下架商品" @click="downGoods"/>
+			<input type="button" value="修改" @click="changeGoods"/>
+			<input type="button" value="删除" @click="delGoods"/>
 
 		</div>
 
@@ -25,33 +25,34 @@
 			<div class="Table">
 				
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
-					<el-table-column type="selection" width="60"></el-table-column>
-	
-					<el-table-column label-class-name="mytableTit" prop="goodsName" label="商品名称" width="125" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="classification" label="分类" width="120" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="goodsNum" label="库存数量" width="80" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="upOrdown" label="上/下架" width="80" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="price" label="单价" width="90" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="company" label="单位" width="50" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="recommend" label="是否推荐" width="80" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="rStarTime" label="推荐开始时间" width="140" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="rEndTime" label="推荐结束时间" width="140" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="kill" label="是否秒杀" width="80" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="kStarTime" label="秒杀开始时间" width="140" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="kEndTime" label="秒杀结束时间" width="140" ></el-table-column>
-					<el-table-column label-class-name="mytableTit" prop="img" label="有无图片" width="80" ></el-table-column>
-	
+					<el-table-column type="selection" width="55"></el-table-column>
 					
-	
+					<el-table-column label-class-name="mytableTit" prop="name" label="商品名称" width="125" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="typename" label="分类" width="100" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="inventory" label="库存数量" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="status" label="上/下架" width="80" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="price" label="单价" width="90" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="unit" label="单位" width="50" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="recommend" label="是否推荐" width="80"  :formatter="isRecom"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="rebeginTime" label="推荐开始时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="reendTime" label="推荐结束时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="ifSpike" label="是否秒杀" width="80" :formatter="isKill"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="startTime" label="秒杀开始时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="endTime" label="秒杀结束时间" width="140" ></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="picture" label="有无图片" width="80" :formatter="isImg"></el-table-column>
 				</el-table>
 	
 				<div class="foot">
-				<div class="footLeft">
+				<!--<div class="footLeft">
 					注册用户数：5555
-				</div>
+				</div>-->
 				<div class="footNum">
-					<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3" :page-size="100" layout="sizes,prev, pager, next, jumper" :total="1000"></el-pagination>
-				</div>
+						<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" 
+							:current-page='1' :current-page.sync="currentPage3" 
+							:page-sizes="pageSizeNum" layout="sizes,prev, pager, next, jumper" 
+							:total="total">
+						</el-pagination>
+					</div>
 			</div>
 
 			</div>

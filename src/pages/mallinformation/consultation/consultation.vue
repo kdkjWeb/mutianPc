@@ -2,16 +2,18 @@
     <div class="consultation">
         <div class="title">
             咨询分类 :
-            <input type="text">
-            <span>增加</span>
-            <span>修改</span>
-            <span>删除</span>
+            <input type="text" v-model="myInput">
+            <span @click="addClass">增加</span>
+            <span @click="changeClass">修改</span>
+            <span @click="delClass">删除</span>
         </div>
         <ul class="assortList">
-            <li v-for="(item,index) in assortList" :key="index">
-                {{item.title}}
+            <li v-for="(item,index) in assortList" :key="index" @click="change(item)">
+                {{item.name}}
             </li>
         </ul>
+        
+        <div class="Copyright">Copyright ©2018-2019     成都恺缔科技有限公司</div>
     </div>
 </template>
 
@@ -55,6 +57,7 @@ export {default} from './consultationCtr'
 .assortList{
     width: 40%;
     max-height: 300px;
+    min-height: 200px;
     margin: 30px auto;
     border: 1px solid #ddd;
     overflow: auto;
@@ -64,9 +67,17 @@ export {default} from './consultationCtr'
     line-height: 35px;
     padding: 0 20px;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
 }
-.assortList li:last-child{
-    border-bottom: none;
+.Copyright{
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	color: #a1a1a1;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
 }
 </style>
 

@@ -9,7 +9,7 @@ export default {
             this.activeIndex = val
             if(val == 0){
                 this.$router.push({
-                    name: 'mallinformation'
+                    name: 'consultation'
                 })
             }else if(val == 1){
                 this.$router.push({
@@ -17,5 +17,16 @@ export default {
                 })
             }
         }
+    },
+    created(){
+    	let path = this.$route.path;
+    	switch (path){
+	    	case '/consultation':
+	    	this.activeIndex = 0;
+	    	break;
+	    	case '/sendnews':
+	    	this.activeIndex = 1;
+	    	break;
+    	}
     }
 }

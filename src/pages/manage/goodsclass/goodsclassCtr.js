@@ -58,7 +58,7 @@ export default {
 							_this.$message({
 								showClose: true,
 								message: res.msg,
-								type: 'err'
+								type: 'error'
 							});
 					}
 				})
@@ -88,7 +88,7 @@ export default {
 						_this.$message({
 							showClose: true,
 							message: res.msg,
-							type: 'err'
+							type: 'error'
 						});
 				}
 			})

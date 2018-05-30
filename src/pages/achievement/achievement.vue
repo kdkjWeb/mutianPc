@@ -3,9 +3,9 @@
 		<!--会员业绩表-->
 
 		<div class="header">
-			<input type="text" name="" id="" value="" placeholder="可按电话号码，昵称 查找" />
+			<input type="text" v-model="seachInput" placeholder="可按电话号码，昵称 查找" />
 
-			<div class="search">
+			<div class="search" @click="searchList">
 				<i class="el-icon-search"></i>
 				<span>查询</span>
 			</div>
@@ -20,29 +20,30 @@
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="55"></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" width="170"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="name" label="真实姓名" ></el-table-column>
 	
-					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" width="230"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="nickname" label="昵称" ></el-table-column>
 	
-					<el-table-column label-class-name="mytableTit" prop="buySome" label="购买者" width="200"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="buySome" label="购买者"></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="money" label="销售金额" width="200"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="money" label="销售金额" ></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="time" label="销售时间" width="300"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="time" label="销售时间" ></el-table-column>
 					
-					<el-table-column label-class-name="mytableTit" prop="product" label="购买产品" width="250"></el-table-column>
+					<el-table-column label-class-name="mytableTit" prop="product" label="购买产品"></el-table-column>
 	
-					
-	
-				
 				</el-table>
 	
 				<div class="foot">
 				<div class="footLeft">
-					注册用户数：5555
+					当前业绩总数：5555
 				</div>
 				<div class="footNum">
-					<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3" :page-size="100" layout="sizes,prev, pager, next, jumper" :total="1000"></el-pagination>
+					<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" 
+						:current-page='1' :current-page.sync="currentPage3" 
+						:page-sizes="pageSizeNum" layout="sizes,prev, pager, next, jumper" 
+						:total="total">
+					</el-pagination>
 				</div>
 			</div>
 

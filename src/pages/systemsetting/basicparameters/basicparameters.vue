@@ -3,14 +3,16 @@
      <div class="basicparameters">
          <div class="container">
              <div class="flex">
-                 升级会员需购买<input type="number">元
+                 升级会员需购买<input type="number" v-model="myInput">元
              </div>
              <div class="flex">
-                 <span class="iconfont icon-gou"></span>
-                 用户满足消费额度后自动升级为会员
+               <i class="iconfont" :class="isVip?'icon-roundcheckfill':'icon-roundcheck'" @click="changeVip()"></i>
+                 	用户满足消费额度后自动升级为会员
              </div>
          </div>
-         <div class="save">保存</div>
+         <div class="save" @click="saveLevel">保存</div>
+         
+          <div class="Copyright">Copyright ©2018-2019     成都恺缔科技有限公司</div>
      </div>
 </template>
 
@@ -58,6 +60,29 @@ export {default} from './basicparametersCtr'
     background-color: #ff5959;
     color: #fff;
     margin: 50px auto;
+}
+/*==============*/
+.icon-roundcheck{
+	font-size: 22px;
+	color: #c3c3c3;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.icon-roundcheckfill{
+	font-size: 22px;
+	color: #ff7200;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.Copyright{
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	color: #a1a1a1;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
 }
 </style>
 

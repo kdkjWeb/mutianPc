@@ -58,10 +58,16 @@ export default {
 					case '/comment':   //商品评论
 					this.activeIndex = 3;
 					break;
-					case '/consultation':   //商城咨询
+					case '/consultation':   //商城咨询 资讯分类
 					this.activeIndex = 4;
 					break;
-					case '/basicparameters':   //系统设置
+					case '/sendnews':   //商城咨询  发布新闻
+					this.activeIndex = 4;
+					break;
+					case '/basicparameters':   //基本参数设置
+					this.activeIndex = 5;
+					break;
+					case '/userlevel':   //用户等级设置
 					this.activeIndex = 5;
 					break;
 				}

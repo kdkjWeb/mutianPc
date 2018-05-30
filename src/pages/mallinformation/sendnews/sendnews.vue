@@ -9,7 +9,7 @@
         <el-form class="form" ref="form" :model="form" label-width="80px">
             <el-form-item label="分类：">
                 <el-select v-model="form.region" placeholder="请选择新闻分类">
-                <el-option v-for="(item,index) in optionList" :key="index" :label="item.title" :value="item.title"></el-option>
+               	 	<el-option v-for="(item,index) in optionList" :key="index" :label="item.name" :value="item.name"></el-option>
                 </el-select>
             </el-form-item>
         </el-form>
@@ -24,7 +24,7 @@
             </quill-editor>
         </div>
 
-        <div class="send">发布</div>
+        <div class="send" @click="save">发布</div>
     </div>
 </template>
 

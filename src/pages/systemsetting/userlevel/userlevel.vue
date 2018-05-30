@@ -8,35 +8,35 @@
                     <span>团队销量</span>
                     <span>个人销量</span>
                 </li>
-                <li v-for="(item,index) in levelList" :key="index">
+                <li v-for="(item,index) in levelList" :key="index" @click="liActive(item)">
                     <span>{{item.title}}</span>
-                    <span>{{item.teamSales}}</span>
-                    <span>{{item.personalSales}}</span>
+                    <span>{{item.allnum?item.allnum:'0'}}</span>
+                    <span>{{item.lowernum?item.lowernum:'0'}}</span>
                 </li>
             </ul>
         </div>
         <div class="userlevel_right">
             <p class="title"> 
-                <span class="iconfont icon-gou"></span>
+                <i class="iconfont" :class="isVip?'icon-roundcheckfill':'icon-roundcheck'" @click="changeVip()"></i>
                  用户满足消费额度后自动升级为会员
             </p>
             <div class="row">
                 <span>用户等级：</span>
-                <input type="text">
+                <input type="text" v-model="Level.title">
             </div>
             <div class="row">
                 <span>团队销量：</span>
-                <input type="text">
+                <input type="text" v-model="Level.allnum">
             </div>
             <div class="row">
                 <span>个人销量：</span>
-                <input type="text">
+                <input type="text" v-model="Level.lowernum">
             </div>
 
             <div class="row row_btn">
-                <span>增加</span>
-                <span>修改</span>
-                <span>删除</span>
+                <span @click="addLevel">增加</span>
+                <span @click="changeLevel">修改</span>
+                <span @click="delList">删除</span>
             </div>
         </div>
     </div>
@@ -70,7 +70,8 @@ export {default} from './userlevelCtr'
     border-left: 1px solid #ddd; */
     border: 1px solid #ddd;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
+    max-height: calc(100% - 100px);
 }
 .container li{
     display: flex;
@@ -78,6 +79,7 @@ export {default} from './userlevelCtr'
     height: 60px;
     line-height: 60px;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
 }
 .container li:first-child{
     background-color: #d7e9f7;
@@ -146,4 +148,18 @@ export {default} from './userlevelCtr'
     cursor: pointer;
     user-select: none;
 }
+
+/*==============*/
+.icon-roundcheck{
+		font-size: 22px;
+		color: #c3c3c3;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+	.icon-roundcheckfill{
+		font-size: 22px;
+		color: #ff7200;
+		vertical-align: middle;
+		cursor: pointer;
+	}
 </style>

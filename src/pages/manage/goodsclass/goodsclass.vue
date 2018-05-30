@@ -85,6 +85,7 @@
 		height: 100%;
 		/*border: 1px solid red;*/
 		margin: 0 auto;
+		overflow-y: auto;
 	}
 	/*===表格头部样式*/
 	

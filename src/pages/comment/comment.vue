@@ -3,18 +3,18 @@
 		<!--商品评论-->
 
 		<div class="header">
-			<input type="text" name="" id="" value="" placeholder="可按电话号码，昵称 查找" />
+			<input type="text" v-model="searchInput" placeholder="输入关键字查找" />
 
-			<div class="search">
+			<div class="search" @click="searchList">
 				<i class="el-icon-search"></i>
 				<span>查询</span>
 			</div>
 
-			<input type="button" value="新评论" />
-			<input type="button" value="历史评论" />
+			<input type="button" value="新评论"  @click="newComment"/>
+			<input type="button" value="历史评论"  @click="historyCommen"/>
 			
-			<input type="button" value="通过审核" class="pass"/>
-			<input type="button" value="删除" />
+			<input type="button" value="通过审核" class="pass" @click="orpass"/>
+			<input type="button" value="删除" @click="delcomm"/>
 
 		</div>
 
@@ -26,20 +26,22 @@
 				
 				<el-table ref="multipleTable"  :height="h" :data="tableData3" tooltip-effect="dark" border style="width: 100%" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="80"></el-table-column>
-					<el-table-column prop="usercomment" label="评论" width="505"></el-table-column>
-					<el-table-column prop="goods" label="相关商品" width="250"></el-table-column>
-					<el-table-column prop="time" label="评论时间" width="250"></el-table-column>
-					<el-table-column prop="people" label="评论人" width="150"></el-table-column>
-					<el-table-column prop="state" label="审核状态" width="170"></el-table-column>
+					<el-table-column prop="comment" label="评论" width="505"></el-table-column>
+					<el-table-column prop="goodsname" label="相关商品" width="250"></el-table-column>
+					<el-table-column prop="cdate" label="评论时间" width="250"></el-table-column>
+					<el-table-column prop="commenter" label="评论人" width="150"></el-table-column>
+					<el-table-column prop="status" label="审核状态" width="170"  :formatter="isStatus"></el-table-column>
 	
 				</el-table>
 	
 				<div class="foot">
-				<div class="footLeft">
-					注册用户数：5555
-				</div>
+				
 				<div class="footNum">
-					<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3" :page-size="100" layout="sizes,prev, pager, next, jumper" :total="1000"></el-pagination>
+					<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" 
+							:current-page='1' :current-page.sync="currentPage3" 
+							:page-sizes="pageSizeNum" layout="sizes,prev, pager, next, jumper" 
+							:total="total">
+						</el-pagination>
 				</div>
 			</div>
 

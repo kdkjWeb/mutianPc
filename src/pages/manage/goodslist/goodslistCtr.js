@@ -1,25 +1,16 @@
   export default {
     data() {
       return {
-      	input:'',//搜索框 的值
+      	seachInput:'',//搜索框 的值
       	currentPage3: 5,   //分页的页数
+      	pageNum: 1, //当前是第几页
+				pageSizeNum: [10, 20, 50], //每页多少条
+				pageSize: 10, //当前默认每页多少条
+				total: 0, //数据总条数
       	h:350,
-        tableData3: [{
-        	goodsName:'辣子鸡',
-        	classification:'冷吃类',
-        	goodsNum:5,
-        	upOrdown:'上架',
-        	price:50,
-        	company:'袋',
-        	recommend:'是',
-        	rStarTime:'15:50',
-        	rEndTime:'16:00',
-        	kill:'是',
-        	kStarTime:'15:00',
-        	kEndTime:'15:00',
-        	img:'有'
-        }],
-        multipleSelection: []
+        tableData3: [],
+        multipleSelection: [],    //选中的数组
+        
       }
     },
 
@@ -36,18 +27,140 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },  
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+      handleSizeChange(val) {  //分页符。每页多少条
+//      console.log(`每页 ${val} 条`);
+        this.pageSize = val;
+				this.getgoodsList();
       },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);tp
-      }
-
+      handleCurrentChange(val) {     //分页符，当前多少页
+//      console.log(`当前页: ${val}`);
+        this.pageNum = val;
+			  this.getgoodsList();
+      },
+//    ====获取=========
+      getgoodsList(){   
+      	let _this = this;
+      	this.$post('goods/getRandomList',{
+      		pageNum: _this.pageNum, //页数
+					pageSize: _this.pageSize, //每页多少条
+					name: _this.seachInput
+	    	}).then(res=>{
+	    		console.log(res);
+	    		if(res.code==0){
+	    			 _this.total = res.data.total;
+	    			 let arr = res.data.list;
+						_this.tableData3 = arr;
+	    		}
+	    		
+	    	})
+      },
+//==========搜索=========
+			search(){
+				this.getgoodsList();
+			},
+			
+//			========替换表格中数据用中文显示===========
+			isRecom(row, column, cellValue){
+				 if (cellValue === "y"){
+                return '推荐';
+            }else{
+                return '不推荐';
+            }
+			},
+			isKill(row, column, cellValue){
+				 if (cellValue === "y"){
+                return '秒杀';
+            }else{
+                return '不秒杀';
+            }
+			},
+			isImg(row, column, cellValue){ 
+				if (cellValue == ''  || cellValue == null){
+          return '无图';
+        }else{
+        	return '有图';
+        }
+			},
+	 //=============删除商品		
+			delGoods(){  
+				this.getAjax('goods/delGoods');   //传请求的接口
+			},
+			
+//			========修改============
+			changeGoods(){
+				if(this.multipleSelection.length>1){
+					 this.$message({
+					      showClose: true,
+					      message: '一次只能修改一个商品',
+					      type: 'error'
+					      });
+				}else{
+					let  goodsId =  this.multipleSelection[0].id;
+//					this.$router.push(`/addgoods?id=${goodsId}`)
+						
+						this.$router.push({
+							name: 'addgoods',
+							query: {
+								id: goodsId
+							}
+						})
+				}
+			},
+			
+//			========下架商品==============
+			downGoods(){
+				 this.getAjax('goods/changeStatus');   //传请求的接口
+			},
+			
+//			==========秒杀商品==================
+			KillGoods(){
+				this.getAjax('goods/getSpikeGoods');   //传请求的接口
+			},
+			
+//			==========推荐商品===============
+			recommGoods(){
+				 this.getAjax('goods/getRecommendGoods');   //传请求的接口
+			},
+//=====================
+			getAjax(myurl){
+			var arr =[];
+			this.multipleSelection.forEach(function(value,index,array){
+				　　　arr.push(array[index].id);
+				});
+			var text = arr.join(',');   //选中的数组	
+			
+			var ajaxUrl = myurl; 
+			
+			this.$get(ajaxUrl,{
+					ids:text
+					}).then(res=>{
+						console.log(res)
+						let code = res.code;
+						switch (code){
+							case 0:
+							this.$message({
+					        showClose: true,
+					        message: '操作成功',
+					        type: 'success'
+					       })
+							this.getgoodsList();
+							break;
+							default:
+							this.$message({
+					      showClose: true,
+					      message: '操作失败',
+					      type: 'error'
+					      });
+						}
+				});	
+			}
+			
+			
     },
-    
     created(){
     	let s = document.body.clientHeight;
     	this.h = s - 390;
+    	this.getgoodsList(); //进入页面请求数据
     },
     mounted(){
     	let _this = this
@@ -62,7 +175,5 @@
         screenHeight (val) {
               this.h = val
           }
-      }
-    
-    
+     }
   }

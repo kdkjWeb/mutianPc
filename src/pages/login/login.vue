@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div class="login" >
         <div class="login_wrap">
             <h1 class="title">牧天优选</h1>
             <div class="row">
@@ -7,7 +7,7 @@
                 <span class="iconfont icon-weibiaoti-_huabanfuben"></span>
             </div>
             <div class="row">
-                <input type="password" v-model="user.userpas" placeholder="请输入密码">
+                <input type="password" v-model="user.userpas" placeholder="请输入密码" @keyup.enter="login">
                 <span class="iconfont icon-ai-password"></span>
             </div>
             <div class="row login_btn" @click="login">登录</div>
